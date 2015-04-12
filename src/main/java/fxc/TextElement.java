@@ -18,11 +18,6 @@ class TextElement extends Element {
 	}
 
 	@Override
-	public Element addText(Object label) throws UnsupportedOperationException {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
 	public Element add(Element value) throws UnsupportedOperationException {
 		throw new UnsupportedOperationException();
 	}

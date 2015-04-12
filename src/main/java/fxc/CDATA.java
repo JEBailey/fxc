@@ -9,7 +9,7 @@ public class CDATA extends Element {
 		START_TAG = "<![CDATA[";
 		END_TAG = "]]>";
 		EMPTY_TAG = "<![CDATA[ ]]>";
-		this.addText(content);
+		this.add(content);
 	}
 	
 }

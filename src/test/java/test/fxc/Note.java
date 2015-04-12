@@ -51,26 +51,26 @@ public class Note {
 	@Test
 	public void test() {
 		Element note = new Element("note");
-		note.addTag("to","Tove");
-		note.addTag("from","Jani");
-		note.addTag("heading","Reminder");
-		note.addTag("body","Don't forget me this weekend!");
+		note.add("to","Tove");
+		note.add("from","Jani");
+		note.add("heading","Reminder");
+		note.add("body","Don't forget me this weekend!");
 		assertEquals(text, note.toString());
 	}
 
 	@Test
 	public void testPretty() {
-		Element note = new Element("note").addTag("to", "Tove")
-				.addTag("from", "Jani").addTag("heading", "Reminder")
-				.addTag("body", "Don't forget me this weekend!");
+		Element note = new Element("note").add("to", "Tove")
+				.add("from", "Jani").add("heading", "Reminder")
+				.add("body", "Don't forget me this weekend!");
 		assertEquals(pretty, note.toString(new Formatter().setPrettyPrint(true)));
 	}
 	
 	@Test
 	public void testFull() {
-		Element note = new Element("note").addTag("to", "Tove")
-				.addTag("from", "Jani").addTag("heading", "Reminder")
-				.addTag("body", "Don't forget me this weekend!");
+		Element note = new Element("note").add("to", "Tove")
+				.add("from", "Jani").add("heading", "Reminder")
+				.add("body", "Don't forget me this weekend!");
 		Element test = new XMLHeader(true).add(note);
 		assertEquals(full, test.toString(new Formatter().setPrettyPrint(true)));
 	}

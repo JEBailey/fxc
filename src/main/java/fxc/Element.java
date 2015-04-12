@@ -24,10 +24,17 @@ public class Element {
 
 	protected static final String VOID = "";
 
+	// String formatting where the first item is the tag value and the second is
+	// the set of attributes
 	protected String START_TAG = "<%s%s>";
+
+	// String formatting where the first item is the tag value and the second is
+	// the set of attributes
 	protected String EMPTY_TAG = "<%s%s/>";
-	protected String END_TAG = "</%s>";
 	
+	// String formatting where the replaced item is the tag value
+	protected String END_TAG = "</%s>";
+
 	/**
 	 * tag name
 	 */
@@ -42,7 +49,7 @@ public class Element {
 	}
 
 	public void write(Writer os) throws IOException {
-		String tag = elements.isEmpty()? EMPTY_TAG : START_TAG;
+		String tag = elements.isEmpty() ? EMPTY_TAG : START_TAG;
 		os.write(String.format(tag, label, getAttributes()));
 		if (!elements.isEmpty()) {
 			for (Element element : elements) {
@@ -53,24 +60,25 @@ public class Element {
 	}
 
 	public void write(Writer os, Formatter formatter) throws IOException {
-		String tag = elements.isEmpty()? EMPTY_TAG : START_TAG;
+		String tag = elements.isEmpty() ? EMPTY_TAG : START_TAG;
 		os.write(String.format(tag, label, getAttributes()));
 		if (!elements.isEmpty()) {
-			//end of a tag with contents. if this element is is not inline then eol;
-			if (!this.isInline()){
+			// end of a tag with contents. if this element is is not inline then
+			// eol;
+			if (!this.isInline()) {
 				formatter.eol(os);
 				formatter.inc();
 			}
 			for (Element element : elements) {
-				if (!this.isInline()){
+				if (!this.isInline()) {
 					formatter.indent(os);
 				}
 				element.write(os, formatter);
-				if (!this.isInline()){
+				if (!this.isInline()) {
 					formatter.eol(os);
 				}
 			}
-			if (!this.isInline()){
+			if (!this.isInline()) {
 				formatter.dec();
 				formatter.indent(os);
 			}
@@ -79,25 +87,25 @@ public class Element {
 
 	}
 
-	public Element addText(Object label) throws UnsupportedOperationException {
-		if (label instanceof Element) {
-			throw new UnsupportedOperationException();
-		}
-		elements.add(new TextElement(label.toString()));
-		return this;
-	}
-
 	public Element add(Element value) throws UnsupportedOperationException {
 		elements.add(value);
 		return this;
 	}
 
-	public Element add(String tag) throws UnsupportedOperationException {
-		return this.add(new Element(tag));
+	/**
+	 * Adds a text node to the existing structure
+	 * 
+	 * @param label
+	 * @return parent element
+	 * @throws UnsupportedOperationException
+	 */
+	public Element add(String label) throws UnsupportedOperationException {
+		elements.add(new TextElement(label));
+		return this;
 	}
 
-	public Element addTag(String tagName, Object value) {
-		this.add(new Element(tagName).addText(value));
+	public Element add(String tagName, String textValue) {
+		elements.add(new Element(tagName).add(textValue));
 		return this;
 	}
 
@@ -109,7 +117,6 @@ public class Element {
 				}
 			}
 		}
-		;
 		return this;
 	}
 
@@ -121,7 +128,7 @@ public class Element {
 		return this.setAttribute(new Attribute(attribute, value));
 	}
 
-	protected String getAttributes(){
+	protected String getAttributes() {
 		StringBuilder sb = new StringBuilder();
 		for (Attribute key : attributes) {
 			sb.append(" ");
@@ -129,18 +136,18 @@ public class Element {
 		}
 		return sb.toString();
 	}
-	
-	public boolean isInline(){
-		if (elements.size()>1){
+
+	public boolean isInline() {
+		if (elements.size() > 1) {
 			return false;
 		} else {
 			return getSize() < 50;
 		}
 	}
-	
+
 	public int getSize() {
 		int response = this.label.length();
-		for (Element element:elements){
+		for (Element element : elements) {
 			response += element.getSize();
 		}
 		return response;

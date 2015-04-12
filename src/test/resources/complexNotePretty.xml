@@ -1,0 +1,10 @@
+<note>
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>Don't forget me this weekend!</body>
+  <footer>
+  	This is a complex note that includes a multi
+  	lined string
+  </footer>
+</note>

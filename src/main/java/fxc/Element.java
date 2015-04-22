@@ -65,20 +65,20 @@ public class Element {
 		if (!elements.isEmpty()) {
 			// end of a tag with contents. if this element is is not inline then
 			// eol;
-			if (!this.isInline()) {
+			if (!this.isInline(formatter)) {
 				formatter.eol(os);
 				formatter.inc();
 			}
 			for (Element element : elements) {
-				if (!this.isInline()) {
+				if (!this.isInline(formatter)) {
 					formatter.indent(os);
 				}
 				element.write(os, formatter);
-				if (!this.isInline()) {
+				if (!this.isInline(formatter)) {
 					formatter.eol(os);
 				}
 			}
-			if (!this.isInline()) {
+			if (!this.isInline(formatter)) {
 				formatter.dec();
 				formatter.indent(os);
 			}
@@ -93,17 +93,24 @@ public class Element {
 	}
 
 	/**
-	 * Adds a text node to the existing structure
+	 * Add String as a text node to the existing node
 	 * 
-	 * @param label
+	 * @param text
 	 * @return parent element
 	 * @throws UnsupportedOperationException
 	 */
-	public Element add(String label) throws UnsupportedOperationException {
-		elements.add(new TextElement(label));
+	public Element add(String text) throws UnsupportedOperationException {
+		elements.add(new TextElement(text));
 		return this;
 	}
 
+	/**
+	 * 
+	 * 
+	 * @param tagName tag label
+	 * @param textValue child text node for the new tag
+	 * @return
+	 */
 	public Element add(String tagName, String textValue) {
 		elements.add(new Element(tagName).add(textValue));
 		return this;
@@ -137,11 +144,11 @@ public class Element {
 		return sb.toString();
 	}
 
-	public boolean isInline() {
+	public boolean isInline(Formatter formatter) {
 		if (elements.size() > 1) {
 			return false;
 		} else {
-			return getSize() < 50;
+			return getSize() < formatter.getSegmentLength();
 		}
 	}
 

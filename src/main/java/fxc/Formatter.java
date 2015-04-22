@@ -13,6 +13,16 @@ public class Formatter {
 	//TODO technically this is incorrect
 	private String LFCR = "\r\n";
 	
+	private int segmentLength = 50;
+	
+	public int getSegmentLength() {
+		return segmentLength;
+	}
+
+	public void setLineLength(int lineLength) {
+		this.segmentLength = lineLength;
+	}
+
 	public void indent(Writer os) throws IOException {
 		if (prettyPrint) {
 			for (int i = indent; i-- > 0;) {

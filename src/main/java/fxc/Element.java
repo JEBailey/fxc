@@ -93,7 +93,7 @@ public class Element {
 	}
 
 	/**
-	 * Add String as a text node to the existing node
+	 * Adds a text node as a child of the existing node.
 	 * 
 	 * @param text
 	 * @return parent element
@@ -105,7 +105,12 @@ public class Element {
 	}
 
 	/**
-	 * 
+	 * Convenience method for a common use case where xml is being used in the format of 
+	 * <p>
+	 * <key>
+	 *     value
+	 * </key>
+	 * <p>
 	 * 
 	 * @param tagName tag label
 	 * @param textValue child text node for the new tag

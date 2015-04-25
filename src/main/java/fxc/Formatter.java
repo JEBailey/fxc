@@ -19,7 +19,7 @@ public class Formatter {
 		return segmentLength;
 	}
 
-	public void setLineLength(int lineLength) {
+	public void setSegmentLength(int lineLength) {
 		this.segmentLength = lineLength;
 	}
 

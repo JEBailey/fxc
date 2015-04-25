@@ -35,12 +35,14 @@ public class XMLHeader extends Element {
 	}
 	
 
-	public void setEncoding(String encoding) {
+	public XMLHeader setEncoding(String encoding) {
 		setAttribute(new Attribute("encoding", encoding));
+		return this;
 	}
 	
-	public void setStandalone(boolean standalone) {
+	public XMLHeader setStandalone(boolean standalone) {
 		setAttribute(new Attribute("standalone", standalone ? "yes" : "no"));
+		return this;
 	}
 
 	@Override

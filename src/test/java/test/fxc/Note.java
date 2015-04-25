@@ -19,6 +19,7 @@ public class Note {
 	private String text;
 	private String pretty;
 	private String full;
+	private String complex;
 
 	@Before
 	public void setUp() throws Exception {
@@ -46,6 +47,14 @@ public class Note {
 			full = scanner.next();
 			scanner.close();
 		}
+		{
+			InputStream is = new FileInputStream(new File(
+					"./src/test/resources/complexNotePretty.xml"));
+			Scanner scanner = new Scanner(is, "UTF-8");
+			scanner.useDelimiter("\\A");
+			complex = scanner.next();
+			scanner.close();
+		}
 	}
 
 	@Test
@@ -60,9 +69,11 @@ public class Note {
 
 	@Test
 	public void testPretty() {
-		Element note = new Element("note").add("to", "Tove")
-				.add("from", "Jani").add("heading", "Reminder")
-				.add("body", "Don't forget me this weekend!");
+		Element note = new Element("note")
+			.add("to", "Tove")
+			.add("from", "Jani")
+			.add("heading", "Reminder")
+			.add("body", "Don't forget me this weekend!");
 		assertEquals(pretty, note.toString(new Formatter().setPrettyPrint(true)));
 	}
 	
@@ -73,6 +84,15 @@ public class Note {
 				.add("body", "Don't forget me this weekend!");
 		Element test = new XMLHeader(true).add(note);
 		assertEquals(full, test.toString(new Formatter().setPrettyPrint(true)));
+	}
+	
+	@Test
+	public void testComplex() {
+		Element note = new Element("note").add("to", "Tove")
+				.add("from", "Jani").add("heading", "Reminder")
+				.add("body", "This is a very long complex note that includes a multi lined string and styling");
+		Element test = new XMLHeader(true).add(note);
+		assertEquals(complex, test.toString(new Formatter().setPrettyPrint(true)));
 	}
 
 }

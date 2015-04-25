@@ -42,12 +42,13 @@ class TextElement extends Element {
 	@Override
 	public void write(Writer os, Formatter formatter) throws IOException {
 		int maxLineLength = formatter.getSegmentLength();
-	    StringTokenizer tok = new StringTokenizer(label, " ");
+	    String[] tok = label.split("((?<= )|(?= ))");
 	    int lineLen = 0;
-	    while (tok.hasMoreTokens()) {
-	        String word = tok.nextToken();
+	    for (String word: tok) {
 	        if (lineLen + word.length() > maxLineLength) {
-	        	formatter.eol(os);
+	        	if (lineLen != 0){
+		        	formatter.eol(os);
+	        	}
 	        	formatter.indent(os);
 	            lineLen = 0;
 	        }
@@ -55,7 +56,30 @@ class TextElement extends Element {
 	        lineLen += word.length();
 	    }
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see fxc.Element#add(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Element add(String tagName, String textValue) {
+		throw new UnsupportedOperationException();
+	}
+
+	/* (non-Javadoc)
+	 * @see fxc.Element#setAttribute(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Element setAttribute(String attribute, String value) {
+		throw new UnsupportedOperationException();
+	}
+
+	/* (non-Javadoc)
+	 * @see fxc.Element#getAttributes()
+	 */
+	@Override
+	protected String getAttributes() {
+		throw new UnsupportedOperationException();
+	}
 	
 	
 }

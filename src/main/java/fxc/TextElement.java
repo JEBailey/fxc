@@ -41,15 +41,15 @@ class TextElement extends Element {
 	
 	@Override
 	public void write(Writer os, Formatter formatter) throws IOException {
-		int maxLineLength = formatter.getSegmentLength();
-	    String[] tok = label.split("((?<= )|(?= ))");
+		int maxSegmentLength = formatter.getSegmentLength();
+	    String[] words = label.split("((?<= )|(?= ))");
 	    int lineLen = 0;
-	    for (String word: tok) {
-	        if (lineLen + word.length() > maxLineLength) {
+	    for (String word: words) {
+	        if (lineLen + word.length() > maxSegmentLength) {
 	        	if (lineLen != 0){
 		        	formatter.eol(os);
+		        	formatter.indent(os);
 	        	}
-	        	formatter.indent(os);
 	            lineLen = 0;
 	        }
 	        os.write(word);

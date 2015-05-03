@@ -31,7 +31,7 @@ public class Element {
 	// String formatting where the first item is the tag value and the second is
 	// the set of attributes
 	protected String EMPTY_TAG = "<%s%s/>";
-	
+
 	// String formatting where the replaced item is the tag value
 	protected String END_TAG = "</%s>";
 
@@ -43,7 +43,13 @@ public class Element {
 	public List<Element> elements = new ArrayList<Element>(4);
 	public Set<Attribute> attributes = new LinkedHashSet<Attribute>();
 
-	/** Creates a new instance of Element */
+	/**
+	 * Creates a new instance of Element The supplied label is used as the tag
+	 * identifier
+	 * 
+	 * @param label
+	 *            is the tag identifier
+	 */
 	public Element(String label) {
 		this.label = label;
 	}
@@ -87,6 +93,14 @@ public class Element {
 
 	}
 
+	/**
+	 * Appends element to the internal list of children
+	 * 
+	 * @param value
+	 *            element to append
+	 * @return current element
+	 * @throws UnsupportedOperationException
+	 */
 	public Element add(Element value) throws UnsupportedOperationException {
 		elements.add(value);
 		return this;
@@ -96,6 +110,7 @@ public class Element {
 	 * Adds a text node as a child of the existing node.
 	 * 
 	 * @param text
+	 *            Text to be added as a child node of type text
 	 * @return parent element
 	 * @throws UnsupportedOperationException
 	 */
@@ -105,22 +120,31 @@ public class Element {
 	}
 
 	/**
-	 * Convenience method for a common use case where xml is being used in the format of 
+	 * Convenience method for a common use case where xml is being used in the
+	 * format of
 	 * <p>
-	 * <key>
-	 *     value
-	 * </key>
+	 * <key> value </key>
 	 * <p>
 	 * 
-	 * @param tagName tag label
-	 * @param textValue child text node for the new tag
-	 * @return
+	 * @param tagName
+	 *            tag label
+	 * @param textValue
+	 *            child text node for the new tag
+	 * @return this
 	 */
 	public Element add(String tagName, String textValue) {
 		elements.add(new Element(tagName).add(textValue));
 		return this;
 	}
 
+	/**
+	 * Adds and/or appends the supplied attribute to the internal attributes
+	 * representation
+	 * 
+	 * @param attribute
+	 *            to append
+	 * @return this
+	 */
 	public Element setAttribute(Attribute attribute) {
 		if (!attributes.add(attribute)) {
 			for (Attribute a : attributes) {
@@ -132,14 +156,36 @@ public class Element {
 		return this;
 	}
 
+	/**
+	 * Create or/append a new attribute with the given key
+	 * 
+	 * @param attribute
+	 *            the key value of the new attribute
+	 * @return this
+	 */
 	public Element setAttribute(String attribute) {
 		return this.setAttribute(new Attribute(attribute));
 	}
 
+	/**
+	 * Creates a new Attribute with the supplied key and value and sets to the
+	 * current node
+	 * 
+	 * @param attribute
+	 *            key value of attribute
+	 * @param value
+	 *            of the provided key
+	 * @return this
+	 */
 	public Element setAttribute(String attribute, String value) {
 		return this.setAttribute(new Attribute(attribute, value));
 	}
 
+	/**
+	 * Provides a string representation of the supplied attributes
+	 * 
+	 * @return this
+	 */
 	protected String getAttributes() {
 		StringBuilder sb = new StringBuilder();
 		for (Attribute key : attributes) {
@@ -149,6 +195,14 @@ public class Element {
 		return sb.toString();
 	}
 
+	/**
+	 * Utility method that determines, based on the given formatter, whether the
+	 * tags will be printed out inline or in a staggered representation
+	 * 
+	 * @param formatter
+	 *            output formatting
+	 * @return true if tags are to be written out unstaggered
+	 */
 	public boolean isInline(Formatter formatter) {
 		if (elements.size() > 1) {
 			return false;
@@ -157,6 +211,11 @@ public class Element {
 		}
 	}
 
+	/**
+	 * the size of the this nodes label and the labels of all of it's children
+	 * 
+	 * @return calculated size
+	 */
 	public int getSize() {
 		int response = this.label.length();
 		for (Element element : elements) {
@@ -169,6 +228,14 @@ public class Element {
 		return toString(null);
 	}
 
+	/**
+	 * Returns a String representation of this element formatted around the
+	 * provided formatter
+	 * 
+	 * @param formatter
+	 *            output formatting
+	 * @return this
+	 */
 	public String toString(Formatter formatter) {
 		StringWriter bos = new StringWriter();
 		try {

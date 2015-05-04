@@ -57,18 +57,18 @@ public class Element {
 	/**
 	 * prints the content of this element to the provided writer
 	 * 
-	 * @param os
+	 * @param writer
 	 *            writer to write this element to
 	 * @throws IOException on an incorrect formatting
 	 */
-	public void write(Writer os) throws IOException {
+	public void write(Writer writer) throws IOException {
 		String tag = elements.isEmpty() ? EMPTY_TAG : START_TAG;
-		os.write(String.format(tag, label, getAttributes()));
+		writer.write(String.format(tag, label, getAttributes()));
 		if (!elements.isEmpty()) {
 			for (Element element : elements) {
-				element.write(os);
+				element.write(writer);
 			}
-			os.write(String.format(END_TAG, label));
+			writer.write(String.format(END_TAG, label));
 		}
 	}
 
@@ -76,37 +76,37 @@ public class Element {
 	 * Prints out the content of the element formatted in the manner as defined
 	 * by the provided formatter
 	 * 
-	 * @param os
+	 * @param writer
 	 *            output writer
 	 * @param formatter
 	 *            defines the stylin of the output
 	 * @throws IOException
 	 *             on an incorrect formatting
 	 */
-	public void write(Writer os, Formatter formatter) throws IOException {
+	public void write(Writer writer, Formatter formatter) throws IOException {
 		String tag = elements.isEmpty() ? EMPTY_TAG : START_TAG;
-		os.write(String.format(tag, label, getAttributes()));
+		writer.write(String.format(tag, label, getAttributes()));
 		if (!elements.isEmpty()) {
 			// end of a tag with contents. if this element is is not inline then
 			// eol;
 			if (!this.isInline(formatter)) {
-				formatter.eol(os);
+				formatter.eol(writer);
 				formatter.inc();
 			}
 			for (Element element : elements) {
 				if (!this.isInline(formatter)) {
-					formatter.indent(os);
+					formatter.indent(writer);
 				}
-				element.write(os, formatter);
+				element.write(writer, formatter);
 				if (!this.isInline(formatter)) {
-					formatter.eol(os);
+					formatter.eol(writer);
 				}
 			}
 			if (!this.isInline(formatter)) {
 				formatter.dec();
-				formatter.indent(os);
+				formatter.indent(writer);
 			}
-			os.write(String.format(END_TAG, label));
+			writer.write(String.format(END_TAG, label));
 		}
 
 	}

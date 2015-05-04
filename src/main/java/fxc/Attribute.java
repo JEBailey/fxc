@@ -4,6 +4,7 @@ package fxc;
  * Represents an attribute in an xml element. This can be either
  * a single element or a key and value pair.
  * 
+ * 
  * @author je bailey
  * 
  */

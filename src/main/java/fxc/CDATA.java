@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.Writer;
 
 /**
- * Utility class to represent CDATA based data within an XML Structure
+ * Utility class to represent CDATA based data within the XML Structure
  * 
  * @author Jason E Bailey
  *

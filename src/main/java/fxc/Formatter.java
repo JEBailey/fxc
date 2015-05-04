@@ -1,20 +1,16 @@
 package fxc;
 
-import java.io.IOException;
-import java.io.Writer;
 
 public class Formatter {
-	
-	private boolean prettyPrint;
 
-	private int indent;
+	private int depth;
 
-	private String INDENT = "  ";
-	//TODO technically this is incorrect
+	private int INDENT = 2;
+	// TODO technically this is incorrect
 	private String LFCR = "\r\n";
-	
+
 	private int segmentLength = 50;
-	
+
 	public int getSegmentLength() {
 		return segmentLength;
 	}
@@ -23,38 +19,40 @@ public class Formatter {
 		this.segmentLength = lineLength;
 	}
 
-	public void indent(Writer os) throws IOException {
-		if (prettyPrint) {
-			for (int i = indent; i-- > 0;) {
-				os.write(INDENT);
-			}
+	public String getIndent() {
+		int indentation = depth * INDENT;
+		if (indentation > 0) {
+			return String.format("%1$" + indentation + "s", " ");
+		} else {
+			return "";
 		}
 	}
-	
-	public Formatter eol(Writer os) throws IOException {
-		if (prettyPrint) {
-			os.write(LFCR);
-		}
-		return this;
-	}
-	
-	public Formatter setPrettyPrint(boolean prettyPrint) {
-		this.prettyPrint = prettyPrint;
-		return this;
-	}
-	
-	public Formatter setIndentSize(int size) {
-		INDENT = String.format("%1$" + size + "s", " "); 
+
+	public Formatter setEol(String eol) {
+		this.LFCR = eol;
 		return this;
 	}
 
+	public String getEol() {
+		return LFCR;
+	}
+
+	public Formatter setIndentSize(int size) {
+		INDENT = size;
+		return this;
+	}
+
+	public int getIndentSize() {
+		return INDENT;
+	}
+
 	public Formatter inc() {
-		++indent;
+		++depth;
 		return this;
 	}
 
 	public Formatter dec() {
-		--indent;
+		--depth;
 		return this;
 	}
 

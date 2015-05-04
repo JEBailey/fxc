@@ -51,13 +51,13 @@ public class XMLHeader extends Element {
 	}
 
 	@Override
-	public void write(Writer os, Formatter formatter) throws IOException {
-		os.write(String.format(START_TAG, "", getAttributes()));
+	public void write(Writer writer, Formatter formatter) throws IOException {
+		writer.write(String.format(START_TAG, "", getAttributes()));
 		if (!elements.isEmpty()) {
-			formatter.eol(os);
+			writer.write(formatter.getEol());
 		}
 		for (Element element : elements) {
-			element.write(os, formatter);
+			element.write(writer, formatter);
 		}
 	}
 

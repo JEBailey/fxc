@@ -45,19 +45,19 @@ public class TextElement extends Element {
 	}
 
 	@Override
-	public void write(Writer os, Formatter formatter) throws IOException {
+	public void write(Writer writer, Formatter formatter) throws IOException {
 		int maxSegmentLength = formatter.getSegmentLength();
 		String[] words = label.split("((?<= )|(?= ))");
 		int lineLen = 0;
 		for (String word : words) {
 			if (lineLen + word.length() > maxSegmentLength) {
 				if (lineLen != 0) {
-					formatter.eol(os);
-					formatter.indent(os);
+					writer.write(formatter.getEol());
+					writer.write(formatter.getIndent());
 				}
 				lineLen = 0;
 			}
-			os.write(word);
+			writer.write(word);
 			lineLen += word.length();
 		}
 	}
@@ -74,7 +74,7 @@ public class TextElement extends Element {
 
 	@Override
 	protected String getAttributes() {
-		throw new UnsupportedOperationException();
+		return "";
 	}
 
 }

@@ -1,9 +1,3 @@
-/*
- * Element.java
- *
- * Created on April 30, 2004, 8:39 AM
- */
-
 package fxc;
 
 import java.io.IOException;
@@ -90,21 +84,21 @@ public class Element {
 			// end of a tag with contents. if this element is is not inline then
 			// eol;
 			if (!this.isInline(formatter)) {
-				formatter.eol(writer);
+				writer.write(formatter.getEol());
 				formatter.inc();
 			}
 			for (Element element : elements) {
 				if (!this.isInline(formatter)) {
-					formatter.indent(writer);
+					writer.write(formatter.getIndent());
 				}
 				element.write(writer, formatter);
 				if (!this.isInline(formatter)) {
-					formatter.eol(writer);
+					writer.write(formatter.getEol());
 				}
 			}
 			if (!this.isInline(formatter)) {
 				formatter.dec();
-				formatter.indent(writer);
+				writer.write(formatter.getIndent());
 			}
 			writer.write(String.format(END_TAG, label));
 		}

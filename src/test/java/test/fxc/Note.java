@@ -74,7 +74,7 @@ public class Note {
 			.add("from", "Jani")
 			.add("heading", "Reminder")
 			.add("body", "Don't forget me this weekend!");
-		assertEquals(pretty, note.toString(new Formatter().setPrettyPrint(true)));
+		assertEquals(pretty, note.toString(new Formatter()));
 	}
 	
 	@Test
@@ -83,7 +83,7 @@ public class Note {
 				.add("from", "Jani").add("heading", "Reminder")
 				.add("body", "Don't forget me this weekend!");
 		Element test = new XMLHeader(true).add(note);
-		assertEquals(full, test.toString(new Formatter().setPrettyPrint(true)));
+		assertEquals(full, test.toString(new Formatter()));
 	}
 	
 	@Test
@@ -92,7 +92,7 @@ public class Note {
 				.add("from", "Jani").add("heading", "Reminder")
 				.add("body", "This is a very long complex note that includes a multi lined string and styling");
 		Element test = new XMLHeader(true).add(note);
-		assertEquals(complex, test.toString(new Formatter().setPrettyPrint(true)));
+		assertEquals(complex, test.toString(new Formatter()));
 	}
 
 }

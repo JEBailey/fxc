@@ -54,6 +54,13 @@ public class Element {
 		this.label = label;
 	}
 
+	/**
+	 * prints the content of this element to the provided writer
+	 * 
+	 * @param os
+	 *            writer to write this element to
+	 * @throws IOException on an incorrect formatting
+	 */
 	public void write(Writer os) throws IOException {
 		String tag = elements.isEmpty() ? EMPTY_TAG : START_TAG;
 		os.write(String.format(tag, label, getAttributes()));
@@ -65,6 +72,17 @@ public class Element {
 		}
 	}
 
+	/**
+	 * Prints out the content of the element formatted in the manner as defined
+	 * by the provided formatter
+	 * 
+	 * @param os
+	 *            output writer
+	 * @param formatter
+	 *            defines the stylin of the output
+	 * @throws IOException
+	 *             on an incorrect formatting
+	 */
 	public void write(Writer os, Formatter formatter) throws IOException {
 		String tag = elements.isEmpty() ? EMPTY_TAG : START_TAG;
 		os.write(String.format(tag, label, getAttributes()));
@@ -100,6 +118,8 @@ public class Element {
 	 *            element to append
 	 * @return current element
 	 * @throws UnsupportedOperationException
+	 *             if the implementation of this method does not support this
+	 *             functionality
 	 */
 	public Element add(Element value) throws UnsupportedOperationException {
 		elements.add(value);
@@ -113,6 +133,8 @@ public class Element {
 	 *            Text to be added as a child node of type text
 	 * @return parent element
 	 * @throws UnsupportedOperationException
+	 *             if the implementation of this method does not support this
+	 *             functionality
 	 */
 	public Element add(String text) throws UnsupportedOperationException {
 		elements.add(new TextElement(text));
@@ -122,10 +144,9 @@ public class Element {
 	/**
 	 * Convenience method for a common use case where xml is being used in the
 	 * format of
-	 * <p>
+	 * {@code
 	 * <key> value </key>
-	 * <p>
-	 * 
+	 * }
 	 * @param tagName
 	 *            tag label
 	 * @param textValue

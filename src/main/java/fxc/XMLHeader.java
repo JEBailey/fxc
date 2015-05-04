@@ -10,7 +10,7 @@ import java.io.Writer;
 import java.nio.charset.Charset;
 
 /**
- * Encapsulates the 
+ * Provides the XML header and standard attributes
  * 
  * 
  * @author je bailey

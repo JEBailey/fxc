@@ -143,10 +143,12 @@ public class Element {
 
 	/**
 	 * Convenience method for a common use case where xml is being used in the
-	 * format of
+	 * format of :
+	 * <p>
 	 * {@code
 	 * <key> value </key>
 	 * }
+	 * <p>
 	 * @param tagName
 	 *            tag label
 	 * @param textValue

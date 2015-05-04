@@ -14,7 +14,7 @@ import java.io.Writer;
  * with limited support for operations.
  * 
  */
-class TextElement extends Element {
+public class TextElement extends Element {
 
 	public TextElement(String label) {
 		super(label);

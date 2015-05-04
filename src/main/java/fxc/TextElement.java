@@ -13,6 +13,7 @@ import java.io.Writer;
  * As such, it's the best element to extend if you are creating a custom element
  * with limited support for operations.
  * 
+ * @author Jason E Bailey
  */
 public class TextElement extends Element {
 

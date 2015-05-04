@@ -5,7 +5,7 @@ package fxc;
  * a single element or a key and value pair.
  * 
  * 
- * @author je bailey
+ * @author Jason E Bailey
  * 
  */
 public class Attribute {

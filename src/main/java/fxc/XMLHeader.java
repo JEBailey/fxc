@@ -13,7 +13,7 @@ import java.nio.charset.Charset;
  * Provides the XML header and standard attributes
  * 
  * 
- * @author je bailey
+ * @author Jason E Bailey
  */
 public class XMLHeader extends Element {
 

@@ -18,7 +18,7 @@ import java.util.Set;
  * Basic element of an XML structure.
  * 
  * 
- * @author je bailey
+ * @author Jason E Bailey
  */
 public class Element {
 

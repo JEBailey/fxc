@@ -73,15 +73,21 @@
 	</dependencies>
 	<url>https://github.com/JEBailey/fxc</url>
 	<packaging>bundle</packaging>
-	  <licenses>
-    <license>
-      <name>The Apache License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-    </license>
-  </licenses>
-  <developers>
-    <developer>
-      <name>Jason Bailey</name>
-    </developer>
-  </developers>
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Jason Bailey</name>
+			<organizationUrl>https://github.com/JEBailey</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<url>https://github.com/JEBailey/fxc</url>
+		<connection>https://github.com/JEBailey/fxc.git</connection>
+		<developerConnection>https://github.com/JEBailey/fxc.git</developerConnection>
+	</scm>
 </project>

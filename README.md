@@ -29,4 +29,24 @@ which produces, when formatted, the following
     <body>Don't forget me this weekend!</body>
  </note>
 ```
-  
+
+To produce a formatted version you pass in a writer and a formatter
+
+```java
+out.write(note.toString(new Formatter()));
+```
+
+The Formatter provides a default set of setting to provide indentation and line breaking based on the length of a node. If the content of a given node is longer than the Formatters segment length it will split the node into multiple lines, if a text is to long it will break the text across multiple lines for ease of viewing.
+
+```xml
+<?xml version='1.0'?>
+<note>
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>
+    This is a very long complex note that includes a 
+    multi lined string and styling
+  </body>
+</note>
+```

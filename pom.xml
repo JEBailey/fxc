@@ -16,7 +16,7 @@
 				<configuration>
 					<instructions>
 						<Export-Package>fxc.*</Export-Package>
-						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
 						<Bundle-Name>${project.name}</Bundle-Name>
 						<Bundle-Vendor>Jason Bailey</Bundle-Vendor>
 					</instructions>
@@ -114,5 +114,4 @@
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
-
 </project>

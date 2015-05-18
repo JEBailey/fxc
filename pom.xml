@@ -3,9 +3,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.24601</groupId>
 	<artifactId>fxc</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>0.8.0-SNAPSHOT</version>
 	<name>fxc</name>
-	<description>Flyweight XML Constructor Kit provides a lightweight, minimalistic XML creation library with no imposed validation.</description>
+	<description>Flyweight XML Constructor Kit provides a lightweight, minimalistic XML construction library with no imposed validation.</description>
 	<build>
 		<plugins>
 			<plugin>
@@ -96,6 +96,7 @@
 	<developers>
 		<developer>
 			<name>Jason Bailey</name>
+			<email>jebailey@24601.org</email>
 			<organizationUrl>https://github.com/JEBailey</organizationUrl>
 		</developer>
 	</developers>
@@ -104,14 +105,4 @@
 		<connection>https://github.com/JEBailey/fxc.git</connection>
 		<developerConnection>https://github.com/JEBailey/fxc.git</developerConnection>
 	</scm>
-	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-	</distributionManagement>
 </project>

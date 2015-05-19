@@ -43,7 +43,7 @@ Using the default formatter is simple.
 out.write(note.toString(new Formatter()));
 ```
 
-The Formatter provides indentation and line breaking based on the length of a node. If the content of a given node is longer than the Formatters segment length it will split the node into multiple lines, if a text is to long it will break the text across multiple lines for ease of viewing.
+The Formatter provides indentation and line breaking based on the length of a node. If the content of a given node is longer than the Formatter's segment length it will split the node into multiple lines, if a text segment is too long it will break the text across multiple lines for ease of viewing.
 
 ```xml
 <?xml version='1.0'?>

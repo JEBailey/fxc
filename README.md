@@ -9,7 +9,7 @@ FXC can be described by what it doesn't do
 * No namespace checking
 * No value checks
 
-It's purpose is to simply provide xml, and when formatted, in as nice a formatting as possible.
+It's purpose is to simply provide xml. Relying on the creator to be responsbile for content.
 
 ```java
 Element note = new Element("note")
@@ -30,13 +30,20 @@ which produces, when formatted, the following
  </note>
 ```
 
-To produce a formatted version you pass in a writer and a formatter
+To produce the output you just call the toString() method.
+
+```java
+out.write(note.toString());
+```
+To help with troubleshooting, or just to create readable content, a formatter can be used. The formatter provides a series of common, configurable, defaults to format the output.
+
+Using the default formatter is simple.
 
 ```java
 out.write(note.toString(new Formatter()));
 ```
 
-The Formatter provides a default set of setting to provide indentation and line breaking based on the length of a node. If the content of a given node is longer than the Formatters segment length it will split the node into multiple lines, if a text is to long it will break the text across multiple lines for ease of viewing.
+The Formatter provides indentation and line breaking based on the length of a node. If the content of a given node is longer than the Formatters segment length it will split the node into multiple lines, if a text is to long it will break the text across multiple lines for ease of viewing.
 
 ```xml
 <?xml version='1.0'?>

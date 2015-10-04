@@ -7,10 +7,9 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Scanner;
 
+import org._24601.fxc.XMLHeader;
 import org.junit.Before;
 import org.junit.Test;
-
-import fxc.XMLHeader;
 
 
 public class HeaderSimple {

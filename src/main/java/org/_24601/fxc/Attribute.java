@@ -1,4 +1,4 @@
-package fxc;
+package org._24601.fxc;
 
 /*
  * Copyright 2015 Jason E Bailey

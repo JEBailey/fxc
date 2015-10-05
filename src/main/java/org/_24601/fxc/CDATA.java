@@ -1,4 +1,5 @@
 package org._24601.fxc;
+
 /*
  * Copyright 2015 Jason E Bailey
  *
@@ -33,7 +34,9 @@ public class CDATA extends TextElement {
 		this.add(content);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fxc.TextElement#write(java.io.Writer, fxc.Formatter)
 	 */
 	@Override

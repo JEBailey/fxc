@@ -1,4 +1,5 @@
 package org._24601.fxc;
+
 /*
  * Copyright 2015 Jason E Bailey
  *
@@ -36,26 +37,8 @@ public class TextElement extends Element {
 		START_TAG = VOID;
 		END_TAG = VOID;
 		EMPTY_TAG = "%s%s";
-	}
-
-	@Override
-	public Element add(Element value) throws UnsupportedOperationException {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Element add(String value) throws UnsupportedOperationException {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Element setAttribute(Attribute attribute) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Element setAttribute(String attribute) {
-		throw new UnsupportedOperationException();
+		setAllowAttributes(false);
+		setAllowChildren(false);
 	}
 
 	@Override
@@ -74,16 +57,6 @@ public class TextElement extends Element {
 			writer.write(word);
 			lineLen += word.length();
 		}
-	}
-
-	@Override
-	public Element add(String tagName, String textValue) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Element setAttribute(String attribute, String value) {
-		throw new UnsupportedOperationException();
 	}
 
 	@Override

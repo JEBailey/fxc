@@ -1,4 +1,5 @@
 package org._24601.fxc;
+
 /*
  * Copyright 2015 Jason E Bailey
  *
@@ -43,6 +44,12 @@ public class Element {
 	// String formatting where the replaced item is the tag value
 	protected String END_TAG = "</%s>";
 
+	// allows attributes, true by default
+	protected boolean allowAttributes = true;
+
+	// allows children, true by default
+	protected boolean allowChildren = true;
+
 	/**
 	 * tag name
 	 */
@@ -67,7 +74,8 @@ public class Element {
 	 * 
 	 * @param writer
 	 *            writer to write this element to
-	 * @throws IOException on an incorrect formatting
+	 * @throws IOException
+	 *             on an incorrect formatting
 	 */
 	public void write(Writer writer) throws IOException {
 		String tag = elements.isEmpty() ? EMPTY_TAG : START_TAG;
@@ -130,6 +138,9 @@ public class Element {
 	 *             functionality
 	 */
 	public Element add(Element value) throws UnsupportedOperationException {
+		if (!allowChildren) {
+			throw new UnsupportedOperationException("Can not add child element");
+		}
 		elements.add(value);
 		return this;
 	}
@@ -157,13 +168,14 @@ public class Element {
 	 * <key> value </key>
 	 * }
 	 * <p>
+	 * 
 	 * @param tagName
 	 *            tag label
 	 * @param textValue
 	 *            child text node for the new tag
 	 * @return this
 	 */
-	public Element add(String tagName, String textValue) {
+	public Element add(String tagName, String textValue) throws UnsupportedOperationException {
 		elements.add(new Element(tagName).add(textValue));
 		return this;
 	}
@@ -176,7 +188,10 @@ public class Element {
 	 *            to append
 	 * @return this
 	 */
-	public Element setAttribute(Attribute attribute) {
+	public Element setAttribute(Attribute attribute) throws UnsupportedOperationException {
+		if (!allowAttributes) {
+			throw new UnsupportedOperationException("Can not add attributes");
+		}
 		if (!attributes.add(attribute)) {
 			for (Attribute a : attributes) {
 				if (a.equals(attribute)) {
@@ -287,8 +302,7 @@ public class Element {
 		int result = 1;
 		result = prime * result + END_TAG.hashCode();
 		result = prime * result + START_TAG.hashCode();
-		result = prime * result
-				+ ((attributes == null) ? 0 : attributes.hashCode());
+		result = prime * result + ((attributes == null) ? 0 : attributes.hashCode());
 		result = prime * result + label.hashCode();
 		return result;
 	}
@@ -325,6 +339,28 @@ public class Element {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * When extending the element with a new class this provides a facility to
+	 * set whether attributes will be accepted or not.
+	 * 
+	 * @param bool
+	 *            allow the addition of attributes
+	 */
+	public void setAllowAttributes(boolean bool) {
+		this.allowAttributes = bool;
+	}
+
+	/**
+	 * When extending the element with a new class this provides a facility to
+	 * set whether child elements will be accepted or not.
+	 * 
+	 * @param bool
+	 *            allow the addition of child elements
+	 */
+	public void setAllowChildren(boolean bool) {
+		this.allowChildren = bool;
 	}
 
 }

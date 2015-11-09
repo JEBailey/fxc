@@ -15,7 +15,8 @@
  */
 /**
  * Flyweight XML Constructor. A set of elements used to create a tree structure
- * with no support for validation or enforcement
+ * with no support for validation or enforcement or 'rightness' rather that is
+ * left to the author creating the xml.
  * 
  * 
  * @author Jason E Bailey

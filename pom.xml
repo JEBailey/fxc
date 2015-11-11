@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.24601</groupId>
 	<artifactId>fxc</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>0.9.0-SNAPSHOT</version>
 	<name>fxc</name>
 	<description>Flyweight XML Constructor Kit provides a lightweight, minimalistic XML construction library with no imposed validation.</description>
 	<build>

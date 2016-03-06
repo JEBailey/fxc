@@ -23,6 +23,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org._24601.fxc.xml.TextElement;
+
 /**
  * Basic element of an XML structure.
  * 
@@ -146,7 +148,7 @@ public class Element {
 	}
 
 	/**
-	 * Adds a text node as a child of the existing node.
+	 * Add a child text node
 	 * 
 	 * @param text
 	 *            Text to be added as a child node of type text

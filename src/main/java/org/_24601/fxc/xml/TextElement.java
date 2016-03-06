@@ -1,4 +1,4 @@
-package org._24601.fxc;
+package org._24601.fxc.xml;
 
 /*
  * Copyright 2015 Jason E Bailey
@@ -17,6 +17,9 @@ package org._24601.fxc;
  */
 import java.io.IOException;
 import java.io.Writer;
+
+import org._24601.fxc.Element;
+import org._24601.fxc.Formatter;
 
 /**
  * Element of text with no encapsulating structure. In the node structure this

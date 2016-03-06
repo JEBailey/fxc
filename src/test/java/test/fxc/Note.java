@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 import org._24601.fxc.Element;
 import org._24601.fxc.Formatter;
-import org._24601.fxc.XMLHeader;
+import org._24601.fxc.xml.XMLHeader;
 import org.junit.Before;
 import org.junit.Test;
 
